@@ -466,4 +466,7 @@
     <string name="i4" translatable="false">I4</string>
     <string name="s1" translatable="false">S1</string>
     <string name="h4" translatable="false">H4</string>
+    <string name="getting_started_guidance">Use the + button to import a tunnel, or view the getting started guide.</string>
+    <string name="getting_started_guide_link">view the getting started guide</string>
+    <string name="no_tunnels_yet">Nothing here… yet.</string>
 </resources>
