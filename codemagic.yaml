@@ -5,11 +5,10 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       groups:
-        - name: default
+        - default
       vars:
         PACKAGE_NAME: "com.zaneschepke.wireguardautotunnel"
-      java: 17
-      android_ndk: null
+      java: 21
     triggering:
       events:
         - push
@@ -22,6 +21,7 @@ workflows:
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
       - name: Build Android Debug APK
         script: |
+          chmod +x gradlew
           ./gradlew :app:assembleFdroidDebug --stacktrace
     artifacts:
       - app/build/outputs/apk/fdroid/debug/*.apk
