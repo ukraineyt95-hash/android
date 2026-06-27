@@ -1,5 +1,12 @@
 name: build
+permissions:
+  contents: read
+
 on:
+  push:
+    branches:
+      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -9,26 +16,28 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
-          
-      - name: Disable native C++ build
+
+      - name: Fix SDK and Disable Native Build
         run: |
           echo "sdk.dir=$ANDROID_HOME" > local.properties
           sed -i '/externalNativeBuild/d' app/build.gradle* || true
           sed -i '/ndkBuild/d' app/build.gradle* || true
-          
-      - name: Build pure WireGuard APK
+          sed -i '/hevtunnel/d' settings.gradle* || true
+          sed -i '/hevtunnel/d' app/build.gradle* || true
+
+      - name: Build Pure WireGuard APK
         run: |
           chmod +x gradlew
           ./gradlew :app:assembleFdroidDebug --stacktrace --no-daemon
 
-      - name: Upload APK
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: my_warp_vpn
+          name: My_Warp_VPN_APK
           path: app/build/outputs/apk/fdroid/debug/*.apk
