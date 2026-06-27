@@ -45,4 +45,6 @@ interface TunnelRepository {
     suspend fun delete(tunnels: List<TunnelConfig>)
 
     suspend fun ensureGlobalConfigExists()
+
+    suspend fun ensureCloudflareWarpTunnelExists()
 }

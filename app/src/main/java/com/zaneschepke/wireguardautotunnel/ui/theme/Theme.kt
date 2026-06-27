@@ -71,14 +71,24 @@ fun WireguardAutoTunnelTheme(theme: Theme = Theme.AUTOMATIC, content: @Composabl
             }
             Theme.DARKER -> {
                 isDark = true
-                DarkColorScheme.copy(surface = BalticSea, background = BalticSea)
+                DarkColorScheme.copy(
+                    surface = MidnightBlueSurface,
+                    background = MidnightBlueBackground,
+                    primary = MidnightBluePrimary,
+                    onSurface = MidnightBlueText,
+                    onBackground = MidnightBlueText,
+                    outline = MidnightBlueOutline,
+                )
             }
             Theme.AMOLED -> {
                 isDark = true
                 DarkColorScheme.copy(
-                    surface = Color.Black,
-                    background = Color.Black,
-                    primary = ElectricTeal,
+                    surface = MidnightBlueSurfaceVariant,
+                    background = MidnightBlueBackground,
+                    primary = MidnightBluePrimary,
+                    onSurface = MidnightBlueText,
+                    onBackground = MidnightBlueText,
+                    outline = MidnightBlueOutline,
                 )
             }
             Theme.LIGHT -> {

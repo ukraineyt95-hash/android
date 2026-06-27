@@ -39,6 +39,7 @@ class AppBoostrapCoordinator(
             listOf(
                 async { bootstrapDns() },
                 async { ensureGlobalConfig() },
+                async { ensureCloudflareWarpTunnel() },
                 async { restoreLockdown() },
             )
 
@@ -71,6 +72,10 @@ class AppBoostrapCoordinator(
 
     private suspend fun ensureGlobalConfig() {
         tunnelRepository.ensureGlobalConfigExists()
+    }
+
+    private suspend fun ensureCloudflareWarpTunnel() {
+        tunnelRepository.ensureCloudflareWarpTunnelExists()
     }
 
     private suspend fun restoreLockdown() {
