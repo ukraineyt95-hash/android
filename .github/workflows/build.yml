@@ -8,6 +8,21 @@ on:
       - master
       - main
   workflow_dispatch:
+    inputs:
+      build_type:
+        type: choice
+        description: "Build type"
+        required: true
+        default: debug
+        options:
+          - debug
+      flavor:
+        type: choice
+        description: "Product flavor"
+        required: true
+        default: fdroid
+        options:
+          - fdroid
 
 jobs:
   build:
@@ -15,29 +30,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-
+          fetch-depth: 0
+          submodules: recursive
+          
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
+          cache: gradle
+          
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      - name: Fix SDK and Disable Native Build
+      - name: Build APK
         run: |
-          echo "sdk.dir=$ANDROID_HOME" > local.properties
-          sed -i '/externalNativeBuild/d' app/build.gradle* || true
-          sed -i '/ndkBuild/d' app/build.gradle* || true
-          sed -i '/hevtunnel/d' settings.gradle* || true
-          sed -i '/hevtunnel/d' app/build.gradle* || true
+          ./gradlew :app:assembleFdroidDebug --stacktrace --info
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
 
-      - name: Build Pure WireGuard APK
-        run: |
-          chmod +x gradlew
-          ./gradlew :app:assembleFdroidDebug --stacktrace --no-daemon
-
-      - name: Upload APK Artifact
+      - name: Upload All APK Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: My_Warp_VPN_APK
+          name: my_warp_vpn
           path: app/build/outputs/apk/fdroid/debug/*.apk
+          retention-days: 1
+          if-no-files-found: warn
