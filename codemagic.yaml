@@ -1,0 +1,27 @@
+workflows:
+  android-debug:
+    name: Android Debug Build
+    max_build_duration: 15
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - name: default
+      vars:
+        PACKAGE_NAME: "com.zaneschepke.wireguardautotunnel"
+      java: 17
+      android_ndk: null
+    triggering:
+      events:
+        - push
+    scripts:
+      - name: Initialize submodules
+        script: |
+          git submodule update --init --recursive
+      - name: Set up local.properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+      - name: Build Android Debug APK
+        script: |
+          ./gradlew :app:assembleFdroidDebug --stacktrace
+    artifacts:
+      - app/build/outputs/apk/fdroid/debug/*.apk
