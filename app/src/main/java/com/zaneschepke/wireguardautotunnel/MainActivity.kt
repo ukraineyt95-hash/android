@@ -113,10 +113,6 @@ import com.zaneschepke.wireguardautotunnel.ui.screens.settings.lockdown.Lockdown
 import com.zaneschepke.wireguardautotunnel.ui.screens.settings.logs.LogsScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.settings.monitoring.MonitoringScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.settings.security.SecurityScreen
-import com.zaneschepke.wireguardautotunnel.ui.screens.support.SupportScreen
-import com.zaneschepke.wireguardautotunnel.ui.screens.support.donate.DonateScreen
-import com.zaneschepke.wireguardautotunnel.ui.screens.support.donate.crypto.AddressesScreen
-import com.zaneschepke.wireguardautotunnel.ui.screens.support.license.LicenseScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.TunnelsScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.settings.TunnelSettingsScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.settings.config.ConfigScreen
@@ -372,30 +368,6 @@ class MainActivity : AppCompatActivity() {
                         )
                     }
 
-                    LaunchedEffect(Unit) {
-                        if (uiState.shouldShowDonationSnackbar && !uiState.alreadyDonated) {
-                            viewModel.setShouldShowDonationSnackbar(false)
-                            toaster.show(
-                                message =
-                                    context.getString(R.string.donation_prompt_prefix) +
-                                        " " +
-                                        context.getString(R.string.donation_prompt_link) +
-                                        " " +
-                                        context.getString(R.string.donation_prompt_suffix),
-                                type = ToastType.Normal,
-                                duration = 30_000L.milliseconds,
-                                action =
-                                    TextToastAction(
-                                        text = context.getString(R.string.donate_title),
-                                        onClick = { toastId ->
-                                            toaster.dismiss(toastId)
-                                            navController.push(Route.Donate)
-                                        },
-                                    ),
-                            )
-                        }
-                    }
-
                     val isPinVisible by remember { derivedStateOf { showLock } }
 
                     val currentRoute by remember {
@@ -589,10 +561,6 @@ class MainActivity : AppCompatActivity() {
                                                 entry<Route.Language> { LanguageScreen() }
                                                 entry<Route.Display> { DisplayScreen() }
                                                 entry<Route.Logs> { LogsScreen() }
-                                                entry<Route.Support> { SupportScreen() }
-                                                entry<Route.License> { LicenseScreen() }
-                                                entry<Route.Donate> { DonateScreen() }
-                                                entry<Route.Addresses> { AddressesScreen() }
                                                 entry<Route.PreferredTunnel> { key ->
                                                     PreferredTunnelScreen(key.tunnelNetwork)
                                                 }

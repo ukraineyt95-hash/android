@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import com.zaneschepke.wireguardautotunnel.R
 import com.zaneschepke.wireguardautotunnel.ui.navigation.NavController
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route
-import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Addresses
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.AndroidIntegrations
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Appearance
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.AutoTunnel
@@ -48,10 +47,8 @@ import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.ConfigEdit
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.ConfigGlobal
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Display
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Dns
-import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Donate
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.IPv6
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Language
-import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.License
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.LocationDisclosure
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Lock
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.LockdownSettings
@@ -64,7 +61,6 @@ import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Settings
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Sort
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.SplitTunnel
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.SplitTunnelGlobal
-import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Support
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.TunnelGlobals
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.TunnelSettings
 import com.zaneschepke.wireguardautotunnel.ui.navigation.Route.Tunnels
@@ -152,13 +148,6 @@ fun currentRouteAsNavbarState(
                                 Icon(Icons.Rounded.Save, stringResource(R.string.save))
                             }
                         },
-                    )
-                }
-                License -> {
-                    NavbarState(
-                        topLeading = { TvBackButton { navController.pop() } },
-                        showBottomItems = true,
-                        topTitle = context.getString(R.string.licenses),
                     )
                 }
                 LocationDisclosure -> {
@@ -327,12 +316,6 @@ fun currentRouteAsNavbarState(
                         showBottomItems = true,
                     )
                 }
-                Support -> {
-                    NavbarState(
-                        topTitle = context.getString(R.string.support),
-                        showBottomItems = true,
-                    )
-                }
                 AndroidIntegrations -> {
                     NavbarState(
                         topLeading = { TvBackButton { navController.pop() } },
@@ -444,20 +427,6 @@ fun currentRouteAsNavbarState(
                     NavbarState(
                         topLeading = { TvBackButton { navController.pop() } },
                         topTitle = context.getString(R.string.wifi_detection_method),
-                        showBottomItems = true,
-                    )
-                }
-                Donate -> {
-                    NavbarState(
-                        topLeading = { TvBackButton { navController.pop() } },
-                        topTitle = context.getString(R.string.donate_title),
-                        showBottomItems = true,
-                    )
-                }
-                Addresses -> {
-                    NavbarState(
-                        topLeading = { TvBackButton { navController.pop() } },
-                        topTitle = context.getString(R.string.addresses),
                         showBottomItems = true,
                     )
                 }
@@ -580,7 +549,7 @@ fun currentRouteAsNavbarState(
                         showBottomItems = true,
                     )
                 }
-                null -> {
+                else -> {
                     NavbarState()
                 }
             }
