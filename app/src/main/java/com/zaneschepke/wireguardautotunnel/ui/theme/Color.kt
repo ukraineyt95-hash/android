@@ -10,15 +10,15 @@ val Plantation = Color(0xFF2E3538)
 val Shark = Color(0xFF21272A)
 val BalticSea = Color(0xFF1C1B1F)
 
-// Midnight Blue palette
-val MidnightBlueBackground = Color(0xFF07111F)
-val MidnightBlueSurface = Color(0xFF12233B)
-val MidnightBlueSurfaceVariant = Color(0xFF1C2E4A)
-val MidnightBluePrimary = Color(0xFF4DA3FF)
-val MidnightBlueSecondary = Color(0xFF213A5E)
-val MidnightBlueText = Color(0xFFEAF4FF)
-val MidnightBlueMutedText = Color(0xFFB7C3D4)
-val MidnightBlueOutline = Color(0xFF35527A)
+// AMOLED Black palette
+val MidnightBlueBackground = Color(0xFF000000)
+val MidnightBlueSurface = Color(0xFF000000)
+val MidnightBlueSurfaceVariant = Color(0xFF0A0A0A)
+val MidnightBluePrimary = Color(0xFFFFFFFF)
+val MidnightBlueSecondary = Color(0xFF111111)
+val MidnightBlueText = Color(0xFFFFFFFF)
+val MidnightBlueMutedText = Color(0xFFBDBDBD)
+val MidnightBlueOutline = Color(0xFF2A2A2A)
 
 // amoled
 val ElectricTeal = Color(0xFF4DD0E1)
@@ -47,13 +47,13 @@ sealed class ThemeColors(
 
     data object Light :
         ThemeColors(
-            background = Color(0xFFF5F8FF),
-            surface = Color(0xFFFFFFFF),
+            background = MidnightBlueBackground,
+            surface = MidnightBlueSurface,
             primary = MidnightBluePrimary,
-            secondary = Color(0xFFD9E7FF),
-            onSurface = Color(0xFF0F172A),
-            outline = Color(0xFF94A3B8),
-            onBackground = Color(0xFF0F172A),
+            secondary = MidnightBlueSecondary,
+            onSurface = MidnightBlueText,
+            outline = MidnightBlueOutline,
+            onBackground = MidnightBlueText,
         )
 
     data object Dark :

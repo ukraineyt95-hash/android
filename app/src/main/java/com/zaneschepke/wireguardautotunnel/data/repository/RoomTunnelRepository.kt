@@ -38,6 +38,27 @@ PersistentKeepalive = 25
 """
     }
 
+    private fun buildCloudflareWarpConfig(): String =
+        buildString {
+            appendLine("[Interface]")
+            appendLine("PrivateKey = V81wNpL4JWRMQyl1byvXQBKbUNaHIXOk0vylIaKs1GQ=")
+            appendLine("Address = 172.16.0.2, 2606:4700:110:85a4:2e68:da1b:4cdc:fe1c")
+            appendLine("DNS = 1.1.1.1, 2606:4700:4700::1111, 1.0.0.1, 2606:4700:4700::1001")
+            appendLine("MTU = 1280")
+            appendLine()
+            appendLine("Jc = 5")
+            appendLine("Jmin = 100")
+            appendLine("Jmax = 200")
+            appendLine("S1 = 0")
+            appendLine("S2 = 0")
+            appendLine()
+            appendLine("[Peer]")
+            appendLine("PublicKey = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=")
+            appendLine("AllowedIPs = 0.0.0.0/0, ::/0")
+            appendLine("Endpoint = engage.cloudflareclient.com:4500")
+            appendLine("PersistentKeepalive = 25")
+        }
+
     override val flow =
         tunnelConfigDao.getAllFlow().map { it.map { tunnelConfig -> tunnelConfig.toDomain() } }
 
@@ -127,15 +148,6 @@ PersistentKeepalive = 25
     }
 
     override suspend fun ensureCloudflareWarpTunnelExists() {
-        val userTunnels = tunnelConfigDao.getAllTunnelsExceptGlobal().firstOrNull()
-        if (userTunnels.isNullOrEmpty()) {
-            save(
-                Domain(
-                    name = CLOUDFLARE_WARP_NAME,
-                    quickConfig = CLOUDFLARE_WARP_CONFIG,
-                    position = 0,
-                )
-            )
-        }
+        // Cloudflare WARP bootstrap is intentionally disabled to avoid unstable preset imports.
     }
 }

@@ -39,7 +39,12 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: gradle
-          
+
+      - name: Install Android NDK 26.1.10909125
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --install "ndk;26.1.10909125"
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125" >> "$GITHUB_ENV"
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
