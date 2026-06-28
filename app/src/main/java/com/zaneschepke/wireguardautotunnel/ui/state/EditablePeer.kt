@@ -7,7 +7,7 @@ import com.zaneschepke.wireguardautotunnel.util.extensions.joinAndTrim
 data class EditablePeer(
     val publicKey: String = "",
     val preSharedKey: String = "",
-    val persistentKeepalive: String = "",
+    val persistentKeepalive: String = "15",
     val endpoint: String = "",
     val allowedIps: String = TunnelConfig.ALL_IPS.joinAndTrim(),
 ) {
