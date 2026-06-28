@@ -9,7 +9,7 @@
     <string name="optional">(اختیاری)</string>
     <string name="prominent_background_location_title">پس منظر لوکیشن کا انکشاف</string>
     <string name="public_key">عوامی کلید</string>
-    <string name="app_name">ڈبلیو جی ٹنل</string>
+    <string name="app_name">Black VPN</string>
     <string name="error_file_extension">فائل conf یا zip نہیں ہے</string>
     <string name="tunnels">ٹنلز</string>
     <string name="tunnel_mobile_data">موبائل ڈیٹا پر ٹنل</string>

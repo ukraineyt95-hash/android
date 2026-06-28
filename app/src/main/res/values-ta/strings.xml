@@ -6,7 +6,7 @@
     <string name="vpn_on">Vpn on</string>
     <string name="exclude">விலக்கு</string>
     <string name="vpn_channel_description">VPN மாநில அறிவிப்புகளுக்கான சேனல்</string>
-    <string name="app_name">Wg சுரங்கப்பாதை</string>
+    <string name="app_name">Black VPN</string>
     <string name="error_file_extension">கோப்பு ஒரு .conf அல்லது .zip அல்ல</string>
     <string name="tunnels">சுரங்கங்கள்</string>
     <string name="tunnel_mobile_data">மொபைல் தரவுகளில் சுரங்கப்பாதை</string>

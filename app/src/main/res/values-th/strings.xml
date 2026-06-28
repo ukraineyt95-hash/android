@@ -309,7 +309,7 @@
     <string name="auto_tunnel_running">Auto-tunnel is running</string>
     <string name="done">Done</string>
     <string name="thank_you">Thank you for using WG Tunnel!</string>
-    <string name="app_name">WG VPN</string>
+    <string name="app_name">Black VPN</string>
     <string name="auto_tunnel_channel_id" translatable="false">Auto-tunnel Channel</string>
     <string name="kofi_url" translatable="false">https://ko-fi.com/zaneschepke</string>
     <string name="bitcoin_cash_address" translatable="false">bitcoincash:qp6xacvswha2tjfp2rscguq3gd4eecxeuvcgtyjv58</string>

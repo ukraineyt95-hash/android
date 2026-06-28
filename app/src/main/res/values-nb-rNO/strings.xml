@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WG Tunnel</string>
+    <string name="app_name">Black VPN</string>
     <string name="app_permission_description">Kontroller tunneler og auto-tunnel egenskaper.</string>
     <string name="enter_config_url">Enter config URL</string>
     <string name="use_android_recommended">Use Android\'s recommended method for getting Wi-Fi information, based on Android version</string>

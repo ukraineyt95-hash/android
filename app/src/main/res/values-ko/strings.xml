@@ -350,7 +350,7 @@
     <string name="matrix_url" translatable="false">https://matrix.to/#/#wg-tunnel-space:matrix.org</string>
     <string name="bitcoin_cash" translatable="false">Bitcoin Cash (BCH)</string>
     <string name="github_sponsors_url" translatable="false">https://github.com/sponsors/zaneschepke</string>
-    <string name="app_name">WG Tunnel</string>
+    <string name="app_name">Black VPN</string>
     <string name="fallback_to_ipv4">Fallback to IPv4</string>
     <string name="excluded_apps">%1$s apps excluded</string>
     <string name="kernel_wireguard_unsupported">Kernel does not include WireGuard support (module missing or not built-in into kernel)!</string>
