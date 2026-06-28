@@ -81,7 +81,12 @@ class ConfigEditViewModel(
                                             showAmneziaValues =
                                                 config.`interface`.isAmneziaEnabled(),
                                         ),
-                                    draft = ConfigDraft(tunnelName = tunnel.name, config = config),
+                                    draft = ConfigDraft(
+                        tunnelName = tunnel.name,
+                        config = config,
+                        gamingMode = tunnel.gamingMode,
+                        sniHost = tunnel.sniHost,
+                    ),
                                 )
                             }
 
@@ -136,7 +141,12 @@ class ConfigEditViewModel(
                     if (tunnelId == null) {
                         TunnelConfig.tunnelConfFromQuick(quickConfig, state.draft.tunnelName)
                     } else {
-                        state.tunnel?.copy(name = state.draft.tunnelName, quickConfig = quickConfig)
+                        state.tunnel?.copy(
+                            name = state.draft.tunnelName,
+                            quickConfig = quickConfig,
+                            gamingMode = state.draft.gamingMode,
+                            sniHost = state.draft.sniHost,
+                        )
                     }
 
                 tunnelConfig?.let {
@@ -329,5 +339,27 @@ class ConfigEditViewModel(
 
     fun setPeerDropdownExpanded(expanded: Boolean) = intent {
         reduce { state.copy(ui = state.ui.copy(isPeerDropdownExpanded = expanded)) }
+    }
+
+    fun onGamingModeChange(enabled: Boolean) = intent {
+        val updatedInterface =
+            if (enabled) {
+                state.draft.config.`interface`.copy(mtu = "1280")
+            } else {
+                state.draft.config.`interface`.copy(mtu = "")
+            }
+        reduce {
+            state.copy(
+                draft =
+                    state.draft.copy(
+                        gamingMode = enabled,
+                        config = state.draft.config.copy(`interface` = updatedInterface),
+                    )
+            )
+        }
+    }
+
+    fun onSniHostChange(host: String) = intent {
+        reduce { state.copy(draft = state.draft.copy(sniHost = host)) }
     }
 }

@@ -57,7 +57,7 @@ enum class Theme {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WireguardAutoTunnelTheme(theme: Theme = Theme.AUTOMATIC, content: @Composable () -> Unit) {
+fun WireguardAutoTunnelTheme(theme: Theme = Theme.AMOLED, content: @Composable () -> Unit) {
     val context = LocalContext.current
     val isTv = LocalIsAndroidTV.current
     var isDark = isSystemInDarkTheme()

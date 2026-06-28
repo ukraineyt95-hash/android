@@ -29,6 +29,10 @@ data class TunnelConfig(
     val ipv4FallbackEnabled: Boolean = false,
     @ColumnInfo(name = "ipv6_restore", defaultValue = "false")
     val ipv6RestoreEnabled: Boolean = false,
+    @ColumnInfo(name = "gaming_mode", defaultValue = "false")
+    val gamingMode: Boolean = false,
+    @ColumnInfo(name = "sni_host", defaultValue = "vk.com")
+    val sniHost: String = "vk.com",
 ) {
     companion object {
         const val GLOBAL_CONFIG_NAME = "4675ab06-903a-438b-8485-6ea4187a9512"

@@ -25,6 +25,8 @@ data class TunnelConfig(
     val isMetered: Boolean = false,
     val ipv4FallbackEnabled: Boolean = false,
     val ipv6RestoreEnabled: Boolean = false,
+    val gamingMode: Boolean = false,
+    val sniHost: String = "vk.com",
 ) {
 
     fun toSummary() = TunnelSummary(id = id, name = name)

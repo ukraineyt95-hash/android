@@ -159,6 +159,8 @@ fun ConfigEditScreen(
             onToggleAmneziaValues = viewModel::toggleShowAmneziaValues,
             onToggleDropdown = viewModel::setInterfaceDropdownExpanded,
             onToggleAmneziaCompat = viewModel::toggleAmneziaCompat,
+            onGamingModeChange = viewModel::onGamingModeChange,
+            onSniHostChange = viewModel::onSniHostChange,
         )
         if (!uiState.isGlobalConfig)
             PeersSection(

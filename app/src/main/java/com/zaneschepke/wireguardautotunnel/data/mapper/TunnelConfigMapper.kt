@@ -19,6 +19,8 @@ fun Entity.toDomain(): Domain =
         isMetered = isMetered,
         ipv4FallbackEnabled = ipv4FallbackEnabled,
         ipv6RestoreEnabled = ipv6RestoreEnabled,
+        gamingMode = gamingMode,
+        sniHost = sniHost,
     )
 
 fun Domain.toEntity(): Entity =
@@ -37,4 +39,6 @@ fun Domain.toEntity(): Entity =
         isMetered = isMetered,
         ipv4FallbackEnabled = ipv4FallbackEnabled,
         ipv6RestoreEnabled = ipv6RestoreEnabled,
+        gamingMode = gamingMode,
+        sniHost = sniHost,
     )
