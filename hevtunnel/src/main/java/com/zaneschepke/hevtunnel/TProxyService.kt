@@ -22,6 +22,18 @@ object TProxyService {
     fun createHevTunnelConfig(config: HevTunnelConfig, cacheDirPath: File): File {
         val tproxyFile = File(cacheDirPath, HEV_CONFIG_FILE_NAME)
 
+        // SNI/TLS routing: only activate when sniHost is set and the SOCKS5 upstream
+        // is a real remote server (not the localhost kill-switch bridge). This wires the
+        // tunnel's "Domain Masking" field into the HEV SOCKS5 TLS Client Hello so that
+        // upstream SOCKS5 servers with SNI-based routing receive the desired server-name.
+        val useSniTls = config.sniHost.isNotBlank() && config.address != "127.0.0.1"
+        val tlsSection = if (useSniTls) {
+            """
+          tls:
+            allow-insecure: false
+            server-name: '${config.sniHost}'"""
+        } else ""
+
         val hevConf =
             """
         misc:
@@ -35,7 +47,7 @@ object TProxyService {
           port: ${config.port}
           username: '${config.username}'
           password: '${config.password}'
-          udp: 'udp'
+          udp: 'udp'$tlsSection
     """
                 .trimIndent()
 

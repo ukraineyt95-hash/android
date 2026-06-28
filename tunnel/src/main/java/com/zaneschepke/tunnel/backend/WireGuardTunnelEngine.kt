@@ -31,7 +31,7 @@ internal class WireGuardTunnelEngine(private val serviceHolder: ServiceHolder) :
             when (mode) {
                 is BackendMode.Proxy.KillSwitchPrimary -> {
                     val proxyConfig = buildBridgeProxyConfig()
-                    startProxyTunnel(ifName, mode.config, proxyConfig, true)
+                    startProxyTunnel(ifName, mode.config, proxyConfig, true, tunnel.sniHost)
                 }
                 is BackendMode.Proxy.Standard -> {
                     val proxyConfig = mode.proxyConfig
@@ -144,6 +144,7 @@ internal class WireGuardTunnelEngine(private val serviceHolder: ServiceHolder) :
         config: Config,
         proxyConfig: ProxyConfig,
         withBridge: Boolean,
+        sniHost: String = "",
     ): Int {
         val quickConfig = buildProxiedQuickString(config, proxyConfig)
 
@@ -171,7 +172,7 @@ internal class WireGuardTunnelEngine(private val serviceHolder: ServiceHolder) :
                         "Bridge pass not set for kill switch proxy config"
                     )
 
-            serviceHolder.getVpnService().startHevSocks5Bridge(port, pass)
+            serviceHolder.getVpnService().startHevSocks5Bridge(port, pass, sniHost)
         }
 
         return handle

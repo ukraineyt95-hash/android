@@ -124,7 +124,7 @@ class VpnService : android.net.VpnService(), KillSwitch, SocketProtector {
         }
     }
 
-    private fun startHevBridge(port: Int, pass: String): Job {
+    private fun startHevBridge(port: Int, pass: String, sniHost: String = ""): Job {
         val job = serviceScope.launch {
             TrafficStats.setThreadStatsTag(HEV_BRIDGE_TRAFFIC_TAG)
             try {
@@ -149,6 +149,7 @@ class VpnService : android.net.VpnService(), KillSwitch, SocketProtector {
                                 address = LOCALHOST,
                                 username = LOCKDOWN_USERNAME,
                                 password = pass,
+                                sniHost = sniHost,
                             )
                         val hevConfigFile =
                             TProxyService.createHevTunnelConfig(config, this@VpnService.cacheDir)
@@ -310,9 +311,9 @@ class VpnService : android.net.VpnService(), KillSwitch, SocketProtector {
         vpnTunFd = null
     }
 
-    override fun startHevSocks5Bridge(port: Int, pass: String) {
+    override fun startHevSocks5Bridge(port: Int, pass: String, sniHost: String) {
         if (hevBridgeJob != null) return
-        hevBridgeJob = startHevBridge(port, pass)
+        hevBridgeJob = startHevBridge(port, pass, sniHost)
     }
 
     override fun stopHevSocks5Bridge() {

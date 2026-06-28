@@ -8,4 +8,5 @@ data class HevTunnelConfig(
     val port: Int,
     val username: String,
     val password: String,
+    val sniHost: String = "",
 )

@@ -5,6 +5,7 @@ interface Tunnel {
     val name: String
     val isMetered: Boolean
     val scriptsEnabled: Boolean
+    val sniHost: String get() = ""
 
     val ipStrategy: IpStrategy
     val features: Set<Feature>
