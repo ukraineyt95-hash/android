@@ -69,11 +69,6 @@ fun DnsMtuSection(
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
-                    Text(
-                        text = "MTU 1280 — меньше лагов в Roblox",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                    )
                 }
                 Switch(
                     checked = gamingMode,
