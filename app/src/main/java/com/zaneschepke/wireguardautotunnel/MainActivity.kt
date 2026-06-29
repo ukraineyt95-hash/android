@@ -114,6 +114,7 @@ import com.zaneschepke.wireguardautotunnel.ui.screens.settings.logs.LogsScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.settings.monitoring.MonitoringScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.settings.security.SecurityScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.TunnelsScreen
+import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.warp.WarpImportScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.settings.TunnelSettingsScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.settings.config.ConfigScreen
 import com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.settings.config.edit.ConfigEditScreen
@@ -488,6 +489,7 @@ class MainActivity : AppCompatActivity() {
                                                     PinLockScreen()
                                                 }
                                                 entry<Route.Tunnels> { TunnelsScreen() }
+                                                entry<Route.WarpImport> { WarpImportScreen() }
                                                 entry<Route.Sort> { SortScreen() }
                                                 entry<Route.TunnelSettings> { key ->
                                                     val viewModel: TunnelViewModel =

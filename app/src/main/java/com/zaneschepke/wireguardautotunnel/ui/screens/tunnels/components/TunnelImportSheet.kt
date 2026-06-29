@@ -1,6 +1,7 @@
 package com.zaneschepke.wireguardautotunnel.ui.screens.tunnels.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Cloud
 import androidx.compose.material.icons.outlined.ContentPasteGo
 import androidx.compose.material.icons.outlined.Create
 import androidx.compose.material.icons.outlined.FileOpen
@@ -23,6 +24,7 @@ fun TunnelImportSheet(
     onManualImportClick: () -> Unit,
     onClipboardClick: () -> Unit,
     onUrlClick: () -> Unit,
+    onWarpClick: () -> Unit,
 ) {
     val isTv = LocalIsAndroidTV.current
 
@@ -76,6 +78,16 @@ fun TunnelImportSheet(
                     onClick = {
                         onDismiss()
                         onManualImportClick()
+                    },
+                )
+            )
+            add(
+                SheetOption(
+                    Icons.Outlined.Cloud,
+                    "Cloudflare WARP",
+                    onClick = {
+                        onDismiss()
+                        onWarpClick()
                     },
                 )
             )
