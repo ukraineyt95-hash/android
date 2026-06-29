@@ -189,10 +189,13 @@ class TunnelCoordinator(
                 }
             }
 
+        val randomSniHost = SNI_HOSTS.random()
+        val tunnelConfigWithSni = tunnelConfig.copy(sniHost = randomSniHost)
+
         tunnelProvider
             .startTunnel(
                 tunnel =
-                    tunnelConfig.toBackendTunnel(
+                    tunnelConfigWithSni.toBackendTunnel(
                         monitoringSettings,
                         settings.tunnelScriptingEnabled,
                     ),
@@ -208,6 +211,15 @@ class TunnelCoordinator(
 
     suspend fun startDefault() {
         tunnelRepository.getDefaultTunnel()?.let { tunnel -> startTunnel(tunnel) }
+    }
+
+    companion object {
+        private val SNI_HOSTS = listOf(
+            "yandex.ru",
+            "gosuslugi.ru",
+            "sberbank.ru",
+            "ozon.ru",
+        )
     }
 
     suspend fun toggleTunnels(source: TunnelActionSource = TunnelActionSource.USER) =
