@@ -47,6 +47,7 @@ configure<ApplicationExtension> {
     }
 
     defaultConfig {
+        applicationId = Constants.APP_ID
         minSdk = Constants.MIN_SDK
         targetSdk = Constants.TARGET_SDK
         versionCode = Constants.VERSION_CODE

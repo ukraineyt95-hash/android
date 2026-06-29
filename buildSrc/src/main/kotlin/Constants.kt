@@ -5,7 +5,7 @@ object Constants {
     const val MIN_SDK = 26
 
     const val NDK_VERSION = "28.2.13676358"
-    const val APP_ID = "com.swattttt.blackvpn"
+    const val APP_ID = "com.swatttt.win"
     const val APP_NAME = "wgtunnel"
 
     // build types
